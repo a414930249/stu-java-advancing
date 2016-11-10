@@ -1,6 +1,5 @@
 package cn.hankchan.stu.jdk.concurrent.nio.test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -21,18 +20,41 @@ import org.junit.Test;
 public class TestBuffer {
 
 	/*
+	 * Gathering Writes是指数据从多个buffer写入到同一个channel
+	 * buffers数组是write()方法的入参，write()方法会按照buffer在数组中的顺序，将数据写入到channel，
+	 * 注意只有position和limit之间的数据才会被写入。因此，如果一个buffer的容量为128byte，但是仅仅包含58byte的数据，
+	 * 那么这58byte的数据将被写入到channel中。因此与Scattering Reads相反，Gathering Writes能较好的处理动态消息
+	 */
+	@Test
+	public void testGather() throws IOException {
+		RandomAccessFile aFile = new RandomAccessFile("d:/data/nio-data.txt", "rw");
+		try {
+			ByteBuffer header = ByteBuffer.allocate(128);
+			ByteBuffer body = ByteBuffer.allocate(1024);
+			ByteBuffer[] bufferArray = {header, body};
+			FileChannel channel = aFile.getChannel();
+			channel.write(bufferArray);
+		} finally {
+			aFile.close();
+		}
+	}
+	
+	/*
 	 * 分散（scatter）从Channel中读取是指在读操作时将读取的数据写入多个buffer中。
 	 * 因此，Channel将从Channel中读取的数据“分散（scatter）”到多个Buffer中。
 	 */
 	@Test
 	public void testScatter() throws IOException {
 		RandomAccessFile aFile = new RandomAccessFile("d:/data/nio-data.txt", "rw");
-		ByteBuffer header = ByteBuffer.allocate(128);
-		ByteBuffer body = ByteBuffer.allocate(1024);
-		ByteBuffer[] bufferArray = {header, body};
-		FileChannel channel = aFile.getChannel();
-		channel.read(bufferArray);
-		aFile.close();
+		try {
+			ByteBuffer header = ByteBuffer.allocate(128);
+			ByteBuffer body = ByteBuffer.allocate(1024);
+			ByteBuffer[] bufferArray = {header, body};
+			FileChannel channel = aFile.getChannel();
+			channel.read(bufferArray);
+		} finally {
+			aFile.close();
+		}
 	}
 	
 	/*
@@ -41,13 +63,16 @@ public class TestBuffer {
 	@Test
 	public void testReadFromBuffer() throws IOException {
 		RandomAccessFile aFile = new RandomAccessFile("d:/data/nio-data.txt", "rw");
-		FileChannel inChannel = aFile.getChannel();
-		ByteBuffer buf = ByteBuffer.allocate(48);
-		int bytesWritten = inChannel.write(buf);
-		System.out.println(bytesWritten);
-		byte aByte = buf.get();
-		System.out.println(aByte);
-		aFile.close();
+		try {
+			FileChannel inChannel = aFile.getChannel();
+			ByteBuffer buf = ByteBuffer.allocate(48);
+			int bytesWritten = inChannel.write(buf);
+			System.out.println(bytesWritten);
+			byte aByte = buf.get();
+			System.out.println(aByte);
+		} finally {
+			aFile.close();
+		}
 	}
 	
 	/*
@@ -56,14 +81,17 @@ public class TestBuffer {
 	@Test
 	public void testWriteToBuffer() throws IOException {
 		RandomAccessFile aFile = new RandomAccessFile("d:/data/nio-data.txt", "rw");
-		FileChannel inChannel = aFile.getChannel();
-		ByteBuffer buf = ByteBuffer.allocate(48);
-		// 1.从Channel写到Buffer的例子
-		int bytesRead = inChannel.read(buf);
-		System.out.println(bytesRead);
-		// 2.通过put()方法写Buffer的例子
-		buf.put((byte) 127);
-		aFile.close();
+		try {
+			FileChannel inChannel = aFile.getChannel();
+			ByteBuffer buf = ByteBuffer.allocate(48);
+			// 1.从Channel写到Buffer的例子
+			int bytesRead = inChannel.read(buf);
+			System.out.println(bytesRead);
+			// 2.通过put()方法写Buffer的例子
+			buf.put((byte) 127);
+		} finally {
+			aFile.close();
+		}
 	}
 	
 	/*
@@ -100,7 +128,7 @@ public class TestBuffer {
 	 * 调用clear()，清空整个缓冲区；调用compact()，只清除已经读过的数据，新写入的数据会放在未读数据的后面
 	 */
 	@Test
-	public void baseUsingExample() {
+	public void baseUsingExample() throws IOException {
 		RandomAccessFile aFile = null;
 		try {
 			aFile = new RandomAccessFile("d:/data/nio-data.txt", "rw");
@@ -120,11 +148,8 @@ public class TestBuffer {
 				buf.clear();
 				bytesRead = inChannel.read(buf);
 			}
+		} finally {
 			aFile.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }

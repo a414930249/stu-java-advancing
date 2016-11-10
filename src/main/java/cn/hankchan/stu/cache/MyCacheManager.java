@@ -16,23 +16,18 @@ public class MyCacheManager<T> {
 	
 	/**
 	 * 新增缓存数据
-	 * @param k
-	 * @param t
 	 */
 	public void addAcct(String k, T t) {
 		maps.put(k, t);
 	}
 	/**
 	 * 根据key从缓存中获取数据
-	 * @param k
-	 * @return
 	 */
 	public T getAcct(String k) {
 		return maps.get(k);
 	}
 	/**
 	 * 根据key从缓存删除该数据
-	 * @param k
 	 */
 	public void delCache(String k){
 		if(maps.containsKey(k)) {
