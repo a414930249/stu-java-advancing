@@ -1,0 +1,9 @@
+283  [main] INFO  cn.hankchan.stu.logger.Wombat - start..
+288  [main] ERROR cn.hankchan.stu.logger.Wombat - test debug: {}
+java.lang.Exception: test
+	at cn.hankchan.stu.logger.Wombat.main(Wombat.java:16)
+286  [main] INFO  cn.hankchan.stu.logger.Wombat - start..
+292  [main] ERROR cn.hankchan.stu.logger.Wombat - test debug: {}
+java.lang.Exception: test
+	at cn.hankchan.stu.logger.Wombat.main(Wombat.java:16)
+294  [main] DEBUG cn.hankchan.stu.logger.Wombat - 登陆名为:dbtinger, 登陆状态为:离线

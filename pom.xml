@@ -21,6 +21,8 @@
 		<slf4j.version>1.7.21</slf4j.version>
 		<logback.version>1.1.6</logback.version>
 		<ehcache.version>2.10.2.2.21</ehcache.version>
+		<ali-oss.version>2.3.0</ali-oss.version>
+		<shiro.version>1.3.2</shiro.version>
 	</properties>
 
 	<dependencies>
@@ -34,6 +36,24 @@
 			<groupId>org.apache.directory.studio</groupId>
 			<artifactId>org.apache.commons.codec</artifactId>
 			<version>1.8</version>
+		</dependency>
+		<!-- Apache Shiro 权限控制 -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-all</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<!-- Shiro单点登录需要 -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-cas</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<!-- alibaba OSS SDK -->
+		<dependency>
+			<groupId>com.aliyun.oss</groupId>
+			<artifactId>aliyun-sdk-oss</artifactId>
+			<version>${ali-oss.version}</version>
 		</dependency>
 		<!-- Ehcache缓存 -->
 		<dependency>
@@ -56,7 +76,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- SLF4J 日志管理 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
@@ -65,9 +85,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>ch.qos.logback</groupId> <artifactId>logback-classic</artifactId> 
-			<version>${logback.version}</version> </dependency> -->
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -232,13 +255,8 @@
 				</configuration>
 			</plugin>
 			<!-- 跳过单元测试 -->
-			<!-- <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+				<configuration> <skip>true</skip> </configuration> </plugin> -->
 		</plugins>
 	</build>
 </project>
