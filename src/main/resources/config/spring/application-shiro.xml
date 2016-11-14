@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Shiro的注解配置一定要放在spring-mvc配置文件中 -->	
+	<description>Shiro Configuration</description>	
+	
+	<!-- Shiro 's main bussiness-tier object for web enable application -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" value="myShiroRealm"></property>
+		<property name="cacheManager" ref="shiroCacheManager"></property>
+	</bean>
+	
+	<!-- 项目自定义的Realm -->
+	<bean id="myShiroRealm" class="cn.hankchan.stu.shiro.test.MyShiroRealm">
+		<property name="cacheManager" ref="shiroCacheManager"></property>
+	</bean>
+	
+	<!-- Shiro Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"></property>
+		<property name="loginUrl" value="/login.html"></property>
+		<property name="successUrl" value="/loginsuccess.html"></property>
+		<property name="unauthorizedUrl" value="/error.html"></property>
+		<property name="filterChainDefinitions">
+			<value>
+				/index.html = authc
+				/login.html = anon
+				/checkLogin.json = anon
+				/loginsuccess.html = anon
+				/logout.json = anon
+				/** = authc
+			</value>
+		</property>
+	</bean>
+	
+	<!-- 用户授权信息Cache -->	
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+	
+	<!-- 保证实现了shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+	
+	<!-- AOP式方法级权限检查, 开启Shiro注解 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" 
+			depends-on="lifecycleBeanPostProcessor">
+		<!-- 如果不配置这个，注解也是开不了的 -->
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager" />  
+	</bean>
+</beans>
