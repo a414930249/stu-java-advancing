@@ -26,6 +26,19 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- 已经将taobao SDK的依赖加到本地maven库 -->
+		<dependency>
+			<groupId>com.taobao.sdk</groupId>
+			<artifactId>taobao-sdk-java-auto</artifactId>
+			<version>1455733249969-20161203</version>
+		</dependency>
+		<!-- Google Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>20.0</version>
+		</dependency>
 		<!-- NetCEF -->
 		<dependency>
 			<groupId>edu.ucar</groupId>
