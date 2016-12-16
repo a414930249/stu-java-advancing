@@ -1,6 +1,5 @@
 package cn.hankchan.stu.guava.test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +8,9 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
+import com.google.common.base.Strings;
 
 /**
  * 使用和避免Null
@@ -92,7 +93,7 @@ public class RefusedNullTest {
 			System.out.println("该方法返回值：" + getStr);	
 		} else {
 			System.out.println("该方法返回的是null值！");
-		}		
+		}
 		/**
 		 * 综合上面的测试，可以知道：
 		 * 1. Optional.of(T) 方法是当引用不存在就会快速失败（抛出一个空指针异常）的；
@@ -104,6 +105,10 @@ public class RefusedNullTest {
 		 * 5. Optional实例可以调用or()方法返回Optional所包含的引用，且如果该引用缺失，返回指定的值
 		 * 6. Optional实例可以调用orNull()方法返回Optional所包含的引用，若引用缺失，返回null
 		 */
+		String abc = "Hello World";
+		System.out.println("isNullOrEmpty()=>>" + Strings.isNullOrEmpty(abc));  // 如果字符串是空字符串或者引用为null，返回true，否则返回false
+		System.out.println("emptyToNull()=>>" + Strings.emptyToNull(abc));  // 如果当前字符串不为空字符串，返回当前字符串，否则返回null
+		System.out.println("nullToEmpty()=>>" + Strings.nullToEmpty(abc));  // 如果当前字符串不为null，返回当前字符串，否则返回空字符串
 	}
 	
 	public static String getOptional(int i) {
