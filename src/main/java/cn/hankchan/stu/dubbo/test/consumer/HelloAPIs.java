@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.hankchan.dubbo.service.HelloService;
-
 @Controller
 public class HelloAPIs {
 

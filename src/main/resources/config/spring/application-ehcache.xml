@@ -12,9 +12,10 @@
 						http://www.springframework.org/schema/context/spring-context.xsd
 						http://www.springframework.org/schema/cache 
            				http://www.springframework.org/schema/cache/spring-cache.xsd">
-		
+	
 	<!-- 自动扫描注解的bean -->
     <context:component-scan base-package="cn.hankchan.stu.cache.ehcache" />
+    <!-- 启动Spring/EhCache注解 -->
     <cache:annotation-driven cache-manager="cacheManager" />
     <!-- <cache:annotation-driven/> -->
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">  

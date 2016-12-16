@@ -2,8 +2,6 @@ package cn.hankchan.stu.dubbo.test.consumer;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.hankchan.dubbo.service.HelloService;
-
 /**
  * 消费服务
  * @author hankChan

@@ -9,6 +9,8 @@ public class HelloWorld {
 	
 	public static void main(String[] args) {
 		try {
+			System.out.println("start....");
+			logger.error("Test Debug {}", new Exception("debug"));
 			int i = 0;
 			int j = 100;
 			System.out.println(j/i);

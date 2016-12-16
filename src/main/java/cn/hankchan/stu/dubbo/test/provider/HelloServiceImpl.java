@@ -1,6 +1,6 @@
 package cn.hankchan.stu.dubbo.test.provider;
 
-import cn.hankchan.dubbo.service.HelloService;
+import cn.hankchan.stu.dubbo.test.consumer.HelloService;
 
 /**
  * 公共接口的实现

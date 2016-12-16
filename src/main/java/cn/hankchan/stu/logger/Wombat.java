@@ -11,6 +11,9 @@ public class Wombat {
 	private int isOnline;
 
 	public static void main(String[] args) {
+		System.out.println("start...........");
+		logger.info("start..");
+		logger.error("test debug: {}", new Exception("test"));
 		Wombat wombat = new Wombat();
 		wombat.showLoginUser(0);
 	}

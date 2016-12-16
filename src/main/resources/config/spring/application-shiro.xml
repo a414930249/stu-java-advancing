@@ -11,12 +11,12 @@
 	<!-- Shiro 's main bussiness-tier object for web enable application -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" value="myShiroRealm"></property>
-		<property name="cacheManager" ref="shiroCacheManager"></property>
+		<!-- <property name="cacheManager" ref="shiroCacheManager"></property> -->
 	</bean>
 	
 	<!-- 项目自定义的Realm -->
 	<bean id="myShiroRealm" class="cn.hankchan.stu.shiro.test.MyShiroRealm">
-		<property name="cacheManager" ref="shiroCacheManager"></property>
+		<!-- <property name="cacheManager" ref="shiroCacheManager"></property> -->
 	</bean>
 	
 	<!-- Shiro Filter -->
@@ -38,7 +38,7 @@
 	</bean>
 	
 	<!-- 用户授权信息Cache -->	
-	<bean id="shiroCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+	<!-- <bean id="shiroCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/> -->
 	
 	<!-- 保证实现了shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>

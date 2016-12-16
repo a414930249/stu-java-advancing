@@ -26,6 +26,24 @@
 	</properties>
 
 	<dependencies>
+		<!-- NetCEF -->
+		<dependency>
+			<groupId>edu.ucar</groupId>
+			<artifactId>netcdf</artifactId>
+			<version>4.3.22</version>
+		</dependency>
+		<!-- Alibaba OTS -->
+		<dependency>
+			<groupId>com.aliyun.openservices</groupId>
+			<artifactId>ots-public</artifactId>
+			<version>2.2.5</version>
+		</dependency>
+		<!-- Alibaba new OTS : TableStore -->
+		<dependency>
+			<groupId>com.aliyun.openservices</groupId>
+			<artifactId>tablestore</artifactId>
+			<version>4.2.0</version>
+		</dependency>
 		<!-- 后续添加,待整理 -->
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -76,7 +94,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- SLF4J 日志管理 -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
@@ -85,7 +103,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
-		</dependency> -->
+		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -225,6 +243,11 @@
 			<artifactId>poi</artifactId>
 			<version>${apache-poi.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.6.0</version>
+		</dependency>
 		<!-- Netty 通信协议框架 -->
 		<dependency>
 			<groupId>io.netty</groupId>
@@ -243,6 +266,16 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
 			<version>${dubbo.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javassist</groupId>
+					<artifactId>javassist</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- Zookeeper Client 分布式服务的注册中心依赖 -->
 		<dependency>
@@ -260,8 +293,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<!-- 跳过单元测试 -->
