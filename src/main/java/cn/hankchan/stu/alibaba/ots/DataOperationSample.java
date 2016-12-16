@@ -19,9 +19,9 @@ public class DataOperationSample {
     private static final String PRIMARY_KEY_NAME = "pk";
 
     public static void main(String[] args) {
-        final String endPoint = "http://portal.cn-shenzhen.ots.aliyuncs.com";
-        final String accessId = "Ul47qjmRrbRTGy5M";
-        final String accessKey = "6dukgSrjaNq77mizxincS5MEYYJtYB";
+        final String endPoint = "";
+        final String accessId = "";
+        final String accessKey = "";
         final String instanceName = "portal";
 
         SyncClient client = new SyncClient(endPoint, accessId, accessKey,

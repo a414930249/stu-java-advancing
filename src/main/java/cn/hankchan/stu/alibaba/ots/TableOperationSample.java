@@ -23,9 +23,9 @@ public class TableOperationSample {
     private static final String KEY_NAME_3 = "TimeSerial";
 
     public static void main(String[] args) throws Exception {
-        final String endPoint = "http://portal.cn-shenzhen.ots.aliyuncs.com";
-        final String accessId = "Ul47qjmRrbRTGy5M";
-        final String accessKey = "6dukgSrjaNq77mizxincS5MEYYJtYB";
+        final String endPoint = "";
+        final String accessId = "";
+        final String accessKey = "";
         final String instanceName = "portal";
         // 创建OTSClient对象, 使用client读写表
         SyncClient client = new SyncClient(endPoint, accessId, accessKey,
