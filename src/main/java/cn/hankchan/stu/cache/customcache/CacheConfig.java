@@ -23,7 +23,7 @@ import com.google.common.cache.CacheBuilder;
 
 /**
  * 自定义缓存实现 
- * @author ching(代码实现) hankChan(补充注释)
+ * @author hankChan
  * @time 10:57:51 - 27 Dec 2016
  * @detail 使用Configuration注解，功能等同于一个Spring的XML配置文件，使用@EnableCaching修饰，支持Spring注解去配置缓存
  * 应用中同时实现了EhCache框架的缓存配置，应用启动时只需要二选一即可，不要同时使用两种缓存实现，具体选择方法如下：
