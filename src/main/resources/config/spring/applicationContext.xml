@@ -7,8 +7,13 @@
 		
 	<context:annotation-config/>
 	
-	<!-- 引入缓存，实际运行二选一即可 -->
+	<!-- 引入缓存，实际运行三选一即可 -->
+	<!-- 自定义缓存 -->
+	<bean class="cn.hankchan.stu.cache.customcache.CacheConfig"></bean>
+	<!-- Ehcache缓存
 	<import resource="classpath:config/spring/application-ehcache.xml"/>
-	<!-- <import resource="classpath:config/spring/application-springcache.xml"/> -->
-	
+	 -->
+	<!-- Spring缓存
+	<import resource="classpath:config/spring/application-springcache.xml"/>
+	 -->
 </beans>
