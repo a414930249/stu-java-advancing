@@ -8,7 +8,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 
@@ -44,6 +43,7 @@ public class RefusedNullTest {
 		System.out.println(result);
 		
 		Optional<String> optional3 = Optional.of("null");
+		// 如果引用存在
 		if(optional3.isPresent()) {
 			System.out.println("字符串“null”引用存在==>>>>>" + optional3.get());
 		} else {
@@ -52,6 +52,7 @@ public class RefusedNullTest {
 		
 		List<String> list = Arrays.asList("first", "second", "third");
 		Optional<List<String>> optional2 = Optional.of(list);
+		// 如果引用存在
 		if(optional2.isPresent()) {
 			System.out.println("引用存在==>>>>>" + list);
 			System.out.println("引用存在==>>>>>" + optional2.get());

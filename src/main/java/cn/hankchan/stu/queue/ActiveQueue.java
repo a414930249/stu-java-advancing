@@ -35,7 +35,6 @@ public class ActiveQueue {
 			try {
 				wait();
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
 		}
 		mr = (MethodRequest) _queue.pop();
