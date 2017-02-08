@@ -9,7 +9,8 @@ import org.springframework.context.support.ApplicationObjectSupport;
  * @author hankChan
  * @Email hankchan101@gmail.com
  * @time 21:33:49 - 8 Feb 2017
- * @detail 提供了两个getBean()方法的不同实现。
+ * @detail <h1>注意：必须将该工具类交给Spring容器统一管理才可以使用。</h1>
+ * 提供了两个getBean()方法的不同实现。
  * 根据传入的Bean的ID或者Class对象返回Spring容器中的Bean对象。
  */
 public class PojoRefSpringBeanUtil extends ApplicationObjectSupport {
